@@ -1,0 +1,44 @@
+@startuml
+
+Artist "1"--"n" Album
+
+Album "1"--"n" Song
+Genre "1" -- "n" Song
+Artist "1"--"n" Song
+
+Playlist "n" --"n" "Song"
+
+
+class Song {
+    - song_id : int 
+    - filename : varchar
+    - title : varchar
+    - dataformat : varchar
+    - trackNumber : int
+    - playtime_seconds : float
+}
+
+class Album {
+     - album_id : int
+     - name : varchar
+     - year : year
+}
+
+class Genre {
+    - name:varchar
+    - code: int 
+}
+
+class Artist {
+    - name : varchar
+}
+
+
+
+
+
+
+
+@enduml
+
+' http://www.dol.unina.it:8445/idea/cnipa_ipovedenti/unica/modulo5/lezione6.html
