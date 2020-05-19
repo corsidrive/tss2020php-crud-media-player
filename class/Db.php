@@ -13,7 +13,7 @@ class Db {
 
     private function __construct() {}
     
-    public static function getInstance()
+    public static function getInstance():PDO
     {
         // sono gia connesso ?
         if(self::$instance === null){
