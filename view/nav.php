@@ -9,7 +9,7 @@
               <a class="nav-link" href="/index.php">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Artist</a>
+              <a class="nav-link" href="<?= Config::SITE_URL?>controller/artist_index_controller.php">Artist</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="">Song</a>
