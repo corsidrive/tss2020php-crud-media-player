@@ -15,6 +15,7 @@ class ArtistModel {
         $sql = "INSERT into Artist (name) values (:name)";
         $pdostm = $this->pdo->prepare($sql);
         $pdostm->bindValue(':name',$artist->name);
+        
 
         $pdostm->execute();
         
@@ -61,7 +62,7 @@ class ArtistModel {
 
     public function delete(int $artist_id)
     {
-
+        
     }
 
 }

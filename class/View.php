@@ -5,8 +5,9 @@ class View {
     {
         extract($viewData);
 
-        echo "<!--" . Config::VIEW_FOLDER.$viewPath.'.php' . "-->";
+        echo "\n<!-- ".$viewPath.'.php' . " -->\n";
         include Config::VIEW_FOLDER.$viewPath.'.php';
+        echo "\n<!-- $viewPath  END -->\n";
     }
 
 }
