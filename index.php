@@ -1,5 +1,5 @@
 <?php 
 include './autoload.php';
 
-View::render('index');
+View::render('index_view');
 
