@@ -22,27 +22,42 @@ class ArtistModel {
 
       } catch (PDOException $e) {
          echo $e->getMessage();
-      }  
+      } 
+    }
 
-     
+    public function readOne(int $artist_id):?Artist
+    {
+      // 01 - scrivo query
+        $sql = "SELECT * FROM artist WHERE artist_id = :artist_id;";
+      // 02 - prepare della query  
+       $stm = $this->pdo->prepare($sql);
+       $stm->bindValue(':artist_id',$artist_id);
+       // 03 eseguo la query
+       $stm->execute();
        
-
+       $res = $stm->fetchAll(PDO::FETCH_CLASS,'Artist');
+       
+       return count($res) > 0 ?  $res[0] : null ;
     }
 
-    public function readOne(int $artist_id)
+    public function readAll():?Array
     {
-        
-    }
-
-    public function readAll()
-    {
-        # code..
+        $sql="select * from artist"; 
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute();
+        $res = $stm->fetchAll(PDO::FETCH_CLASS,'Artist');
+        return count($res) > 0 ? $res : null;
     }
 
     public function update(Artist $artist)
     {
+        $sql = "UPDATE artist SET name = :name where artist_id = :artist_id";
+        $stm = $this->pdo->prepare($sql);
+        $stm->bindValue(":name",$artist->name);
+        $stm->bindValue(":artist_id",$artist->artist_id);
+        $stm->execute();
         
-    }
+    } 
 
     public function delete(int $artist_id)
     {
