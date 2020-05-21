@@ -2,7 +2,7 @@
 include '../autoload.php';
 
 $artist = new Artist();
-$artist->name = "Ligabue";
+$artist->name = "Ciccio song";
 $artist->artist_id = 2;
 
 $artistModel = new ArtistModel(Db::getInstance());
@@ -29,4 +29,6 @@ foreach ($res2 as  $artista) {
     echo $artista->name . "\n";
 
 }
+
+
 
