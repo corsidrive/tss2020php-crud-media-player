@@ -1,10 +1,10 @@
-<?php include '../autoload.php' ?>
-<?php 
+<?php
+include '../autoload.php';
 
 $artistModel = new ArtistModel(Db::getInstance());
-View::render('artist_index_view',
-            [
-                'artisti'=>$artistModel->readAll(4)
-            ]);
+$artistlist = $artistModel->readAll();
 
-?>
+
+View::render('artist_index_view',[
+    'artisti' => $artistlist
+]);

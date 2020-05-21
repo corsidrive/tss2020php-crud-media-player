@@ -2,8 +2,8 @@
 include '../autoload.php';
 
 $artist = new Artist();
-$artist->name = "ZZTOP";
-$artist->artist_id = 9;
+$artist->name = "Ciccio song";
+$artist->artist_id = 2;
 
 $artistModel = new ArtistModel(Db::getInstance());
 // $ultimo = $artistModel->create($artist);
@@ -11,9 +11,6 @@ $artistModel = new ArtistModel(Db::getInstance());
 // $res = $artistModel->readOne(4);
 
 $res = $artistModel->readAll();
-//print_r($res);
-
-// echo $res[4]->name; 
 
 foreach ($res as  $artista) {
     echo "----------------\n";
@@ -22,10 +19,16 @@ foreach ($res as  $artista) {
 }
 
 $artistModel->update($artist);
+
+$res2 = $artistModel->readAll();
+
 echo "@@@@@@@@@@@@@@\n";
 
-foreach ($res as  $artista) {
+foreach ($res2 as  $artista) {
     echo "----------------\n";
     echo $artista->name . "\n";
 
 }
+
+
+
