@@ -62,7 +62,11 @@ class ArtistModel {
 
     public function delete(int $artist_id)
     {
-        
+      $sql = "DELETE from Artist where artist_id=:artist_id";
+      $stm = $this->pdo->prepare($sql);
+      $stm->bindValue(":artist_id",$artist_id);
+      $stm->execute();
+      
     }
 
 }
