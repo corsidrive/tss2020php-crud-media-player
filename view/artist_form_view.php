@@ -1,8 +1,7 @@
 <?php View::render('head'); ?>
 <?php View::render('nav');  ?>
 
-<?php View::render('jumbotron', ['lead' => "aggiungi nuovo artista", 'site_name' => "Supercal"]); ?>
-
+<?php View::render('jumbotron', ['lead' => $lead, 'site_name' => "Supercal"]); ?>
 
 <main class="container">
 
@@ -18,7 +17,7 @@
                <input id="name" value="<?= $artista->name ?>" class="form-control" type="text" name="artist_name">
            </div>
            <div class="form-group">
-              <button type="submit" class="btn btn-primary">aggiungi</button>
+              <button type="submit" class="btn btn-primary"><?=  $button ?></button>
            </div>
        </form>
     </div>

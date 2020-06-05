@@ -1,13 +1,12 @@
 <?php
 include_once '../autoload.php';
 
-
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
+    // artista conosciuto
     $artist_id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
-
-
     $artistModel = new ArtistModel(Db::getInstance());
+    
     $artist = $artistModel->readOne($artist_id);
 
 
@@ -29,7 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 View::render('artist_form_view',[
     'artista' => $artist,
-    'mode' => 'Modifica Artista'
+    'mode' => 'Modifica Artista '.$artist->name,
+    'lead'=>'Modifica artista',
+    'button'=>'modifica'
 ]);
 
 
