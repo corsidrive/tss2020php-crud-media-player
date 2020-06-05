@@ -1,6 +1,7 @@
 <?php
 include_once '../autoload.php';
 
+
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
     // artista conosciuto
@@ -30,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 View::render('artist_form_view',[
     'artista' => $artist,
+    'nameField' => $nameField,
     'mode' => 'Modifica Artista '.$artist->name,
     'lead'=>'Modifica artista',
     'button'=>'modifica'

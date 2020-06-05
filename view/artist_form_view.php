@@ -15,6 +15,10 @@
            <div class="form-group">
                <label for="name">Nome dell'artista</label>
                <input id="name" value="<?= $artista->name ?>" class="form-control" type="text" name="artist_name">
+           
+               <?php if($nameField->getIsValid() === false) { ?>
+                     <div class="text-danger"><?= $nameField->getErrorMessage()  ?> </div>
+               <?php } ?>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary"><?=  $button ?></button>

@@ -42,6 +42,7 @@ class Validate
         ));
     }
 
+    
     public static function isName($value)
     {
         $value = strip_tags($value); // "   ciao    "
