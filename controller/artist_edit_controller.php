@@ -15,7 +15,6 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-
     $artist_name = filter_input(INPUT_POST, 'artist_name');
 
     $artist = new Artist();
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
 }
 
-View::render('artist_add_view',[
+View::render('artist_form_view',[
     'artista' => $artist,
     'mode' => 'Modifica Artista'
 ]);

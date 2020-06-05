@@ -22,15 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // $artistModel->update($artist);
     $artistModel->create($artist);
-
-
     header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
 }
 
 
-
-
-View::render('artist_add_view',
+View::render('artist_form_view',
     [
         'artista' => $artist,
         'mode'=>'Inserisci artista'
