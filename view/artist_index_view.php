@@ -8,6 +8,8 @@
 
 <div class="container">
 
+    <a href="<?= Config::SITE_URL.'controller/artist_add_controller.php' ?>" >aggiungi artista</a>
+
     <table class="table table-light">
         <thead class="thead-light">
             <tr>
@@ -31,4 +33,6 @@
         </tbody>
     </table>
 </div>
+
+
 <?php View::render('footer');

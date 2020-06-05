@@ -6,7 +6,7 @@ $artist->name = "Ciccio song";
 $artist->artist_id = 2;
 
 $artistModel = new ArtistModel(Db::getInstance());
-// $ultimo = $artistModel->create($artist);
+$ultimo = $artistModel->create($artist);
 
 // $res = $artistModel->readOne(4);
 
