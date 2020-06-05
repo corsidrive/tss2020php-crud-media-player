@@ -24,7 +24,13 @@
 
                 <tr>
                     <td><?php echo $artista->artist_id ?> </td>
-                    <td><a href="<?php echo $artsta->name;  ?>"><?php echo $artista->name;  ?></a></td>
+                   
+                    <td><a href="<?= Config::SITE_URL.'/controller/artist_edit_controller.php?id='.$artista->artist_id ?>"><?php echo $artista->name;  ?></a></td>
+                   
+                   
+                   
+                   
+                   
                     <td class="text-center"><a href="<?= Config::SITE_URL.'controller/artist_delete_controller.php?id='.$artista->artist_id ?>" class="text-danger">delete</a></td>
                 </tr>
 
