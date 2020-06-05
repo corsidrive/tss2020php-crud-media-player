@@ -12,6 +12,9 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
+
+    
+
     $artist_name = filter_input(INPUT_POST, 'artist_name');
 
     $artist = new Artist();
