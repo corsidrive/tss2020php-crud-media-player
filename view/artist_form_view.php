@@ -15,11 +15,12 @@
            <div class="form-group">
                <label for="name">Nome dell'artista</label>
                <input id="name" value="<?= $artista->name ?>" class="form-control" type="text" name="artist_name">
-           </div>
-           <div class="form-group">
-              <button type="submit" class="btn btn-primary"><?=  $button ?></button>
-           </div>
-       </form>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary"><?=  $button ?></button>
+            </div>
+            <input type="hidden" name="artist_id" value="<?= $artista->artist_id ?>" > 
+        </form>
     </div>
 </div>
 
