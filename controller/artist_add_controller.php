@@ -1,6 +1,13 @@
 <?php
 include_once '../autoload.php';
 
+if($_SERVER['REQUEST_METHOD'] == 'GET'){
+
+   $artist = new Artist();
+   $artist->name = ''; 
+   
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -23,4 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 
-View::render('artist_add_view');
+View::render('artist_add_view',
+    [
+        'artista' => $artist,
+        'mode'=>'Inserisci artista'
+    ]);
