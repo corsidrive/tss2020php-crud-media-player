@@ -15,7 +15,7 @@
               <a class="nav-link" href="#">Song</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Genre</a>
+              <a class="nav-link" href="<?= Config::SITE_URL?>controller/genre_index_controller.php">Genre</a>
             </li>
           </ul>
         </div>

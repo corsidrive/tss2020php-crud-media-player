@@ -42,7 +42,6 @@ class Validate
         ));
     }
 
-    
     public static function isName($value)
     {
         $value = strip_tags($value); // "   ciao    "
@@ -61,4 +60,16 @@ class Validate
         return Validate::required($value);
         
     }
-}
+
+
+public static function is_number($num)
+    {   
+        return filter_var($num, FILTER_VALIDATE_INT, array(
+            "options" => array(
+                "min_range" => 0,
+                "max_range" => 1100
+            )
+        ));
+    }
+
+}    
