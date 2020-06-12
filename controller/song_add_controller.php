@@ -1,13 +1,14 @@
 <?php 
 include "../autoload.php";
 
-print_r($_FILES);
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
-
+   
+    $original_file_name = $_FILES['filename']['name'];
     $error = $_FILES['filename']['error'];
     $tmp_path = $_FILES['filename']['tmp_name'];
-    $destination = Config::UPLOAD_FOLDER.'ciccio.cic';
+
+    $destination = Config::UPLOAD_FOLDER.$original_file_name;
 
     if($error == UPLOAD_ERR_OK){
         move_uploaded_file($tmp_path,$destination);
