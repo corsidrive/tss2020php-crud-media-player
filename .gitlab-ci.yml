@@ -1,0 +1,6 @@
+demo_01:
+  tags:
+  - ci
+  script:
+  - echo Hello Word
+
