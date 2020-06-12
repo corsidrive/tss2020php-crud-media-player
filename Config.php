@@ -11,6 +11,7 @@ class Config {
     public const SITE_URL = 'http://localhost/tss2020php-crud-media-player/';
     //public const SITE_URL = 'http://xxxxxx/sito_media_library.php';
     public const VIEW_FOLDER = __DIR__.'/view/';
+    public const UPLOAD_DIR = __DIR__.'/upload/';
 
 }
 
