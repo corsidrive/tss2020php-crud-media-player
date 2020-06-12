@@ -12,7 +12,7 @@
               <a class="nav-link" href="<?= Config::SITE_URL?>controller/artist_index_controller.php">Artist</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Song</a>
+              <a class="nav-link" href="<?= Config::SITE_URL?>controller/song_index_controller.php">Song</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= Config::SITE_URL?>controller/genre_index_controller.php">Genre</a>
