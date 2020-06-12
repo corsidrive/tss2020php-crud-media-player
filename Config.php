@@ -8,8 +8,8 @@ class Config {
     public const DB_HOST = 'localhost';
     
     
-    // public const SITE_URL = 'http://localhost/tss2020php-crud-media-player/';
-    public const SITE_URL = 'http://xxxxxx/sito_media_library.php';
+    public const SITE_URL = 'http://localhost/tss2020php-crud-media-player/';
+    //public const SITE_URL = 'http://xxxxxx/sito_media_library.php';
     public const VIEW_FOLDER = __DIR__.'/view/';
 
 }

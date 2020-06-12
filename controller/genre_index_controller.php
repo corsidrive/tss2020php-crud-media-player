@@ -6,6 +6,6 @@
 
     View::render('genre_index_view', 
         [
-            'genere' => $genrelist
+            'generi' => $genrelist
         ]
     );
