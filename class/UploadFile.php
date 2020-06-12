@@ -2,11 +2,19 @@
 
 class UploadFile {
 
-    
+    private $name;
+    private $uploadir;
 
-    public function __construct($name,$uploaddir) {
+    public function __construct($name,$uploadir) {
         $this->name = $name;
-        $this->uploadir = $uploaddir;
+        $this->uploadir = $uploadir;
+
+        var_dump(file_exists($this->uploadir));
+        var_dump($this->uploadir);
+        
+        // if(!@mkdir($this->uploadir)){
+        //     echo "non riesco a creare la directory";
+        // };
     }
 
     public function upload()
@@ -17,9 +25,7 @@ class UploadFile {
         $error = $_FILES[$this->name]['error']; 
         $filename = $_FILES[$this->name]['name']; 
 
-        $uploaddir = 
-
-        move_uploaded_file($_FILES[$this->name]['tmp_name'],);
+        move_uploaded_file($_FILES[$this->name]['tmp_name'],$this->uploadir.DIRECTORY_SEPARATOR.$filename);
         
 
         echo "$filename";        
@@ -28,4 +34,7 @@ class UploadFile {
         };
         die();
     }
+
+
+    
 } 

@@ -14,7 +14,7 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $uploadMP3 = new UploadFile('filename');
+    $uploadMP3 = new UploadFile('filename',Config::UPLOAD_DIR);
     $uploadMP3->upload();
 
 
