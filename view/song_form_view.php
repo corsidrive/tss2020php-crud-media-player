@@ -15,9 +15,12 @@ enctype="multipart/form-data">
             </div>
             <div class="form-group">
                 <label for="artist">Artista</label>
-                <select id="artist" class="form-control">
+                <select id="artist" name="artist_id" class="form-control">
                     <option selected >sconosciuto</option>
-                    <option >Mario</option>
+                
+                    <?php foreach($elencoArtisti as $artista){ ?>
+                            <option value="<?= $artista->artist_id ?>" ><?= $artista->name ?></option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="form-group">
