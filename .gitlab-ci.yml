@@ -1,6 +1,9 @@
 demo_01:
+  stage: deploy
+  only : 
+   - master
   tags:
-  - ci
+   - ci
   script:
-  - echo Hello Word
+   - echo Hello Word
 
