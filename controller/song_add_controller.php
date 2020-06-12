@@ -6,6 +6,7 @@ include_once '../autoload.php';
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
+
   
 
 }
@@ -13,16 +14,12 @@ if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-   
-    
+    $uploadMP3 = new UploadFile('filename');
+    $uploadMP3->upload();
 
 
-  
+    //header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
 
-    // header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
-    
-
-    
 }
 
 

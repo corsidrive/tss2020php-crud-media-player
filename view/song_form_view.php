@@ -31,8 +31,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="artist">File</label>
-                <input type="file" name="" id="">
+                <label for="filename">File</label>
+                <input type="file" class="form-control" name="filename" id="filename">
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">aggiungi</button>
