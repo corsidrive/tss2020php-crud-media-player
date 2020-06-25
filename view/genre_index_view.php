@@ -11,7 +11,7 @@
 
     <?php  if($generi){ ?>
 
-        <table class="table table-light">
+        <table class="table table-light mt-3">
             <thead class="thead-light">
                 <tr>
                     <th width="1%">#</th>
@@ -21,11 +21,6 @@
             </thead>
             <tbody>
 
-            
-
-          
-
-           
                 <?php foreach ($generi as $genere) { ?>
                                    
                     <tr>
@@ -44,7 +39,7 @@
         </table>
 
             <?php } else { ?>
-                <div class="alert alert-info m-3">non ci sono genri </div>;
+                <div class="alert alert-secondary mt-3">non ci sono generi </div>
             <?php } ?>     
     </div>    
 
