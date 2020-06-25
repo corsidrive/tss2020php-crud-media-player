@@ -6,5 +6,5 @@ $songlist = $songModel->readAll();
 
 View::render('song_index_view',[
     'songlist' => $songlist,
-    'lead' => 'Elenco ddegli artisti'
+    'lead' => 'Elenco degli artisti'
 ]);

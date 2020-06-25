@@ -1,43 +1,62 @@
 <?php
 include_once '../autoload.php';
 
+$nameField = new ValidationField(
+    'artist_name',
+    'isName',
+    'il nome non è valido',
+    ['required' => true]
+);
 
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
+$idField = new ValidationField(
+    'artist_id',
+    'is_integer',
+    'id non valido',
+    ['required' => true]
+);
 
-    // artista conosciuto
-    $artist_id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
-    $artistModel = new ArtistModel(Db::getInstance());
-    // 
-    $artist = $artistModel->readOne($artist_id);
 
 
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $artist_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    
+    if($artist_id != false){
+        $artistModel = new ArtistModel(Db::getInstance());
+        $artist = $artistModel->readOne($artist_id);
+    }else{
+        $artist = null;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $artist_name = filter_input(INPUT_POST, 'artist_name');
-    $artist_id = filter_input(INPUT_POST,'artist_id',FILTER_VALIDATE_INT);
+    $artist_id = $idField->getValue();
+
+    $artist_name = $nameField->getValue();
 
     $artist = new Artist();
+
     $artist->name = $artist_name;
+
     $artist->artist_id = $artist_id;
-    
-    $artistModel = new ArtistModel(Db::getInstance());
-    
-    $artistModel->update($artist);
-    
-    header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
+
+    if (ValidationField::formIsValid()) {
+
+        $artistModel = new ArtistModel(Db::getInstance());
+
+        $artistModel->update($artist);
+
+        header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
+
+    }
+
 }
 
-View::render('artist_form_view',[
+View::render('artist_form_view', [
     'artista' => $artist,
     'nameField' => $nameField,
-    'mode' => 'Modifica Artista '.$artist->name,
-    'lead'=>'Modifica artista',
-    'button'=>'modifica'
+    'mode' => 'Modifica artista: ' . ($artist ? $artist->name : null),
+    'lead' => 'Modifica artista ',
+    'button' => 'modifica',
 ]);
-
-
-
-
-

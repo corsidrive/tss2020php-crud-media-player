@@ -25,10 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $artist = new Artist();
     $artist->name = $artist_name;
-    //$artist->artist_id = $artist_id;
     
-    //var_dump(ValidationField::formIsValid());
-
     if(ValidationField::formIsValid()){
 
         $artistModel = new ArtistModel(Db::getInstance());
