@@ -1,8 +1,7 @@
 <?php View::render('head'); ?>
-<?php View::render('nav')  ?>
+<?php View::render('nav');  ?>
 
-<?php View::render('jumbotron', 
-                                [ 'lead' => "Elenco dei generi", 'site_name' => "Supercal" ]  ); ?>
+<?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
 
 <?php //print_r($genere) ?>  
 
