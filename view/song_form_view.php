@@ -1,4 +1,4 @@
-<?php View::render('head',['title'=>$lead]); ?>
+<?php View::render('head', ['title' => $lead]); ?>
 <?php View::render('nav'); ?>
 
 <?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
@@ -13,55 +13,24 @@
         <div class="form-group">
             <label for="artist">Artista</label>
             <select id="artist" name="artist_id" class="form-control">
-                <option selected>sconosciuto</option>
+                <option value='0' <?= $song->artist_id === null ? 'selected' : ''; ?>> sconosciuto </option>
                 <?php foreach ($elencoArtisti as $artista) { ?>
 
-                    <?php if ($song->artist_id == $artista->artist_id) { ?>
-                        <option value="<?= $artista->artist_id ?>" selected>
-                            <?= $artista->name ?>
-                        </option>
-
-                    <?php } else { ?>
-
-                        <option value="<?= $artista->artist_id ?>">
-
-                            <?= $artista->name ?>
-
-                        </option>
-
-                    <?php } ?>
-
+                    <option value="<?= $artista->artist_id ?>" <?php $song->artist_id === $artista->artist_id ? 'selected' : '' ?>>
+                        <?= $artista->name ?>
+                    </option>
 
                 <?php } ?>
             </select>
             <div class="form-group">
                 <label for="genre">Genere</label>
                 <select id="genre" class="form-control" name="genre_id">
-                    <option selected>sconosciuto</option>
-                    <?php
+                    <option value='0' <?= $song->genre_id === null ? 'selected' : ''; ?>> sconosciuto </option>
+                    <?php foreach ($elencoGeneri as $genere) { ?>
 
-                    foreach ($elencoGeneri as $genere) {
-
-                    ?>
-
-                        <?php if ($song->genre_id == $genere->genre_id) { ?>
-
-
-                            <option value="<?= $genere->genre_id ?>" selected>
-
-                                <?= $genere->name ?>
-
-                            </option>
-
-                        <?php } else { ?>
-
-                            <option value="<?= $genere->genre_id ?>">
-
-                                <?= $genere->name ?>
-
-                            </option>
-
-                        <?php } ?>
+                        <option value="<?= $genere->genre_id ?>" <?php $song->genre_id === $genere->genre_id ? 'selected' : '' ?>>
+                            <?= $genere->name ?>
+                        </option>
 
                     <?php } ?>
                 </select>

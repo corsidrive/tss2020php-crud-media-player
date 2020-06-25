@@ -55,25 +55,21 @@ class SongModel
     {
 
         $sql = "SELECT
-                    song_id,
-                    filename,
-                    title,
-                    g.genre_id,
-                    g.name as nameGenre,
-                    g.code,
-                    a.artist_id,
-                    a.name as nameArtist 
-                FROM
+                song_id,
+                filename,
+                title,
+                g.name as genreName,
+                a.name as artistName 
         
-                Song as s 
-                
+                FROM song as s 
+                   
                 left join
-                Genre as g 
+                genre as g 
                 on (s.genre_id = g.genre_id) 
+       
                 left join
-           
-                Artist as ar 
-                on s.artist_id = a.artist_id;";
+                artist as a
+                ON (s.artist_id = a.artist_id)";
 
         $stm = $this->pdo->prepare($sql);
 

@@ -8,9 +8,14 @@ $genreModel = new GenreModel(Db::getInstance());
 $elencoGeneri = $genreModel->readAll();
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $song = new Song();
+    $song->title = '';
+    $song->genre_id = null;
+    $song->artist_id = null;
+
 }
 
-if (isset($_FILES)) {
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -63,11 +68,12 @@ if (isset($_FILES)) {
 
     }
 
-}
+
 
 View::render('song_form_view', [
     'elencoArtisti' => $elencoArtisti,
     'elencoGeneri' => $elencoGeneri,
+    'song' => $song,
     'lead' => 'Aggiungi nuovo artista',
     'button' => 'aggiungi',
 ]);
