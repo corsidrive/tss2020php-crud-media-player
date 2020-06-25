@@ -22,6 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $artist_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
     
     if($artist_id != false){
+
         $artistModel = new ArtistModel(Db::getInstance());
         $artist = $artistModel->readOne($artist_id);
     }else{
@@ -32,19 +33,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $artist_id = $idField->getValue();
-
     $artist_name = $nameField->getValue();
 
     $artist = new Artist();
-
     $artist->name = $artist_name;
-
     $artist->artist_id = $artist_id;
 
     if (ValidationField::formIsValid()) {
 
         $artistModel = new ArtistModel(Db::getInstance());
-
         $artistModel->update($artist);
 
         header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
