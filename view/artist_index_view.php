@@ -1,13 +1,9 @@
-<?php View::render('head'); ?>
+<?php View::render('head',['title'=>$lead]); ?>
 <?php View::render('nav');  ?>
 
 <?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
 
-<?php // print_r($artisti) 
-?>
-
 <div class="container">
-
     <a href="<?= Config::SITE_URL . 'controller/artist_add_controller.php' ?>">aggiungi artista</a>
 
     <?php if ($artisti != null) { ?>

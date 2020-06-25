@@ -1,13 +1,27 @@
 <?php
-include "../autoload.php";
 
-$artistModel = new ArtistModel(Db::getInstance());
-$elencoArtisti = $artistModel->readAll();
-
-$genreModel = new GenreModel(Db::getInstance());
-$elencoGeneri = $genreModel->readAll();
+include_once '../autoload.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    // creare due tendine elenco degli artisti e dei generi
+
+    $idsong = filter_input(INPUT_GET, "id", FILTER_VALIDATE_INT);
+
+    $artistModel = new ArtistModel(Db::getInstance());
+
+    $genreModel = new GenreModel(Db::getInstance());
+
+    $songModel = new SongModel(Db::getInstance());
+
+    $elencoArtisti = $artistModel->readAll();
+
+    $elencoGeneri = $genreModel->readAll();
+
+    //echo $idsong;
+
+    $song = $songModel->readOne($idsong);
+
 }
 
 if (isset($_FILES)) {
@@ -15,7 +29,7 @@ if (isset($_FILES)) {
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $upload = new UploadFile('filename', Config::UPLOAD_FOLDER);
-        
+
         // validazione
 
         $song = new Song();
@@ -26,12 +40,15 @@ if (isset($_FILES)) {
 
         $idgenere = filter_input(INPUT_POST, "genre_id", FILTER_VALIDATE_INT);
 
-        $idastista = filter_input(INPUT_POST, "artist_id", FILTER_VALIDATE_INT);
+        $idartista = filter_input(INPUT_POST, "artist_id", FILTER_VALIDATE_INT);
+
+        $idsong = filter_input(INPUT_POST, "song_id", FILTER_VALIDATE_INT);
+
+        $song->song_id = $idsong;
 
         if (empty($song->title)) {
 
-
-            header('Location: http://localhost/tss2020php-crud-media-player/controller/song_add_controller.php?empty');
+            header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php?empty');
 
         } else {
 
@@ -41,7 +58,7 @@ if (isset($_FILES)) {
 
             $artistModel = new ArtistModel(Db::getInstance());
 
-            $artista = $artistModel->readOne($idastista);
+            $artista = $artistModel->readOne($idartista);
 
             $song->artist = $artista;
 
@@ -53,7 +70,7 @@ if (isset($_FILES)) {
 
                 $songModel = new SongModel(Db::getInstance());
 
-                $songModel->create($song);
+                $songModel->update($song);
 
                 header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
 
@@ -68,6 +85,6 @@ if (isset($_FILES)) {
 View::render('song_form_view', [
     'elencoArtisti' => $elencoArtisti,
     'elencoGeneri' => $elencoGeneri,
-    'lead' => 'Aggiungi nuovo artista',
-    'button' => 'aggiungi',
+    'song' => $song,
+    'button' => 'modifica',
 ]);

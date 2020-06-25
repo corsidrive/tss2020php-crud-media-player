@@ -1,4 +1,4 @@
-<?php View::render('head'); ?>
+<?php View::render('head',['title'=>$lead]); ?>
 <?php View::render('nav');  ?>
 
 <?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>

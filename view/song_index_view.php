@@ -1,14 +1,13 @@
-<?php View::render('head'); ?>
+<?php View::render('head',['title'=>$lead]); ?>
 <?php View::render('nav') ?>
-<?php View::render('jumbotron', ['lead' => "elenco delle canzoni", 'site_name' => "Sito"]); ?>
+<?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
 
-<?php //print_r($artisti)
-?>
-<div class="container mainBody">
+<div class="container">
 
     <a href="<?= Config::SITE_URL . 'controller/song_add_controller.php' ?>">aggiungi canzone</a>
-    <?php if (count($songlist) > 0) { ?>
-        <table class="table table-light">
+    
+    <?php if ($songlist != null) { ?>
+        <table class="table table-light mt-3">
             <thead class="thead-light">
                 <tr>
                     <th width="1%">#</th>
@@ -44,7 +43,7 @@
                 <?php } // end foreach ?>
             </tbody>
         </table>
-    <?php } else { ?> <div class="alert alert-secondary"> nessuna canzone disponibile </div> <?php } ?>
+    <?php } else { ?> <div class="alert alert-secondary mt-3"> nessuna canzone disponibile </div> <?php } ?>
 </div>
 
 <?php View::render('footer'); ?>

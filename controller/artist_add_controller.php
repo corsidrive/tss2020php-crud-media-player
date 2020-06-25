@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $artistModel = new ArtistModel(Db::getInstance());
         $artistModel->create($artist);
-       // header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
+        header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
     }
 
     
@@ -46,5 +46,5 @@ View::render('artist_form_view',
         'nameField' => $nameField,
         'mode'=>'Inserisci artista',
         'lead' => 'Aggiungi nuovo artista',
-        'button'=> 'aggiungi'
+        'button'=> 'aggiungi',
     ]);

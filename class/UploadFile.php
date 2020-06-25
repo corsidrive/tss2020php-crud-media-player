@@ -22,7 +22,6 @@ class UploadFile {
     public function doUpload()
     {
 
-
         $original_file_name = $_FILES[$this->name]['name'];
         $error = $_FILES[$this->name]['error'];
         $tmp_path = $_FILES[$this->name]['tmp_name'];
@@ -34,7 +33,8 @@ class UploadFile {
             return $original_file_name;
 
         }else{
-            // TODO: eccezione per errore di caricamento
+            
+            return false;
         }
 
     }
