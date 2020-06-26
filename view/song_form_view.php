@@ -47,7 +47,7 @@
             <div class="form-group col-md-6">
                 <label for="filename">File</label>
                 <input type="file" class="form-control" name="filename" id="filename">
-                <?php if(!$songUpload->isAllowed()) { ?>
+                <?php if(!$songUpload->isAllowed() && empty($song->filename)) { ?>
                     <div class="text-danger">devi caricare un file. 
                     formati permessi: <strong><?=  $songUpload->getAllowedTypes() ?> </strong>
                     </div>
@@ -57,6 +57,7 @@
             <?php if (!empty($song->filename)) { ?>
                 <div class="col-md-6 p-3">
                     <div for="filename">Current audio file</div>
+                    <?= $song->filename ?>
                     <audio controls>
                         <source src="<?php echo Config::SITE_URL . '/uploads/' . $song->filename; ?>" type="audio/mpeg" />
                     </audio>

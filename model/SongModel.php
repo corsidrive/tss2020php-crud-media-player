@@ -15,7 +15,9 @@ class SongModel
 
         try {
 
-            $sql = "insert into song (filename, title, genre_id, artist_id) values(:filename, :title, :genre_id, :artist_id);";
+            $sql = "INSERT into song (filename, title, genre_id, artist_id) 
+                    values
+                    (:filename, :title, :genre_id, :artist_id);";
 
             $pdostm = $this->pdo->prepare($sql);
 
@@ -98,7 +100,7 @@ class SongModel
 
     public function delete(int $song_id)
     {
-
+        
         $sql = "delete from Song where song_id = :song_id";
 
         $stm = $this->pdo->prepare($sql);

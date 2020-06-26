@@ -14,7 +14,7 @@
                     <th>title</th>
                     <th>genere</th>
                     <th>artista</th>
-                    <th>Audio</th>
+                    <th class="text-center">Audio</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -30,10 +30,12 @@
                         <td class="align-middle"><?php echo $song->genreName ?  : 'sconosciuto' ; ?></td>
                         <td class="align-middle"><?php echo $song->artistName ? : 'sconosciuto' ; ?></td>
 
-                        <td class="align-middle">
+                        <td class="align-middle text-center">
                             <audio controls>
                                 <source src="<?php echo Config::SITE_URL . '/uploads/' . $song->filename; ?>" type="audio/mpeg" />
                             </audio>
+                            <div class="filename text-success"><?= $song->filename ?></div>
+                            
                         </td>
                         <td class="text-center align-middle">
                             <a href="<?= Config::SITE_URL . 'controller/song_delete_controller.php?id=' . $song->song_id ?>" class="text-danger">delete</a>
