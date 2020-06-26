@@ -25,6 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
         $artistModel = new ArtistModel(Db::getInstance());
         $artist = $artistModel->readOne($artist_id);
+        
     }else{
         $artist = null;
     }

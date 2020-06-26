@@ -90,11 +90,7 @@ class ValidationField {
 
             $method = $this->validationType; // required
             
-
-           // var_dump($val);
             $test = call_user_func("Validate::$method",$val);
-
-        
 
             if($test !=  false){
                 $this->isValid = true;
@@ -110,7 +106,6 @@ class ValidationField {
                     self::$errors = true;
                 }
 
-  
             }
 
 
