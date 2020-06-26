@@ -8,6 +8,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 <link rel="stylesheet" href="assets/css/style.css">
 <title><?= $title ?></title>
+<style>
+    body {
+    padding-bottom: 6rem;
+}
+</style>
 </head>
 <body>
 

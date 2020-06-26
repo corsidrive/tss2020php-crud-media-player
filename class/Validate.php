@@ -61,6 +61,7 @@ class Validate
         
     }
 
+    
 
 public static function is_number($num)
     {   
@@ -70,6 +71,18 @@ public static function is_number($num)
                 "max_range" => 1100
             )
         ));
+    }
+
+public static function is_int_or_null($num)
+    {   
+        // echo __FUNCTION__;
+        // var_dump('NULL' == $num);
+        // var_dump( $num);
+        if( 'NULL' == $num ) { 
+            return NULL; 
+        } else {
+            return filter_var($num, FILTER_VALIDATE_INT);
+        }
     }
 
 }    

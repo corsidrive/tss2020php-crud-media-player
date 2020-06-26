@@ -21,8 +21,8 @@ class SongModel
 
             $pdostm->bindValue(':filename', $song->filename);
             $pdostm->bindValue(':title', $song->title);
-            $pdostm->bindValue(':genre_id', $song->genre->genre_id);
-            $pdostm->bindValue(':artist_id', $song->artist->artist_id);
+            $pdostm->bindValue(':genre_id', $song->genre_id);
+            $pdostm->bindValue(':artist_id', $song->artist_id);
 
             $pdostm->execute();
 
@@ -83,14 +83,14 @@ class SongModel
     public function update(Song $song)
     {
 
-        $sql = "update Song set filename = :filename, title = :title, genre_id = :genre_id, artist_id = :artist_id where song_id = :song_id";
+        $sql = "UPDATE song SET filename = :filename, title = :title, genre_id = :genre_id, artist_id = :artist_id where song_id = :song_id";
 
         $stm = $this->pdo->prepare($sql);
 
         $stm->bindValue(":filename", $song->filename);
         $stm->bindValue(":title", $song->title);
-        $stm->bindValue(":genre_id", $song->genre->genre_id);
-        $stm->bindValue(":artist_id", $song->artist->artist_id);
+        $stm->bindValue(":genre_id", $song->genre_id);
+        $stm->bindValue(":artist_id", $song->artist_id);
         $stm->bindValue(":song_id", $song->song_id);
         $stm->execute();
 

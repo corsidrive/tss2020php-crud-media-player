@@ -9,14 +9,20 @@
             <input type="hidden" name="song_id" value="<?= $song->song_id ?>" />
             <label for="title">Titolo</label>
             <input id="title" value="<?= $song->title ?>" name="title" class="form-control" type="text">
+            <?php if ($titleField->getIsValid() === false) { ?>
+                            <div class="text-danger"><?= $titleField->getErrorMessage()  ?> </div>
+            <?php } ?>
         </div>
         <div class="form-group">
             <label for="artist">Artista</label>
+           
+
             <select id="artist" name="artist_id" class="form-control">
-                <option value='0' <?= $song->artist_id === null ? 'selected' : ''; ?>> sconosciuto </option>
+                
+                <option value="NULL" <?= $song->artist_id == '' ? 'selected' : ''; ?>> sconosciuto </option>
                 <?php foreach ($elencoArtisti as $artista) { ?>
 
-                    <option value="<?= $artista->artist_id ?>" <?php $song->artist_id === $artista->artist_id ? 'selected' : '' ?>>
+                    <option value="<?= $artista->artist_id ?>" <?= $song->artist_id == $artista->artist_id ? 'selected' : '' ?>>
                         <?= $artista->name ?>
                     </option>
 
@@ -25,27 +31,40 @@
             <div class="form-group">
                 <label for="genre">Genere</label>
                 <select id="genre" class="form-control" name="genre_id">
-                    <option value='0' <?= $song->genre_id === null ? 'selected' : ''; ?>> sconosciuto </option>
+                    <option value="NULL" <?= $song->genre_id == '' ? 'selected' : ''; ?>> sconosciuto </option>
                     <?php foreach ($elencoGeneri as $genere) { ?>
 
-                        <option value="<?= $genere->genre_id ?>" <?php $song->genre_id === $genere->genre_id ? 'selected' : '' ?>>
+                        <option value="<?= $genere->genre_id ?>" <?= $song->genre_id == $genere->genre_id ? 'selected' : '' ?>>
                             <?= $genere->name ?>
                         </option>
 
                     <?php } ?>
                 </select>
             </div>
+
+            <div class="row">
+
+            <div class="form-group col-md-6">
+                <label for="filename">File</label>
+                <input type="file" class="form-control" name="filename" id="filename">
+                <?php if(!$songUpload->isAllowed()) { ?>
+                    <div class="text-danger">devi caricare un file. 
+                    formati permessi: <strong><?=  $songUpload->getAllowedTypes() ?> </strong>
+                    </div>
+                <?php } ?>
+            </div>
+
             <?php if (!empty($song->filename)) { ?>
-                <div class="form-group">
+                <div class="col-md-6 p-3">
+                    <div for="filename">Current audio file</div>
                     <audio controls>
                         <source src="<?php echo Config::SITE_URL . '/uploads/' . $song->filename; ?>" type="audio/mpeg" />
                     </audio>
                 </div>
             <?php } ?>
-            <div class="form-group">
-                <label for="filename">File</label>
-                <input type="file" class="form-control" name="filename" id="filename">
-            </div>
+
+            </div>  
+
             <div class="form-group">
                 <button type="submit" class="btn btn-primary"><?= $button ?></button>
             </div>

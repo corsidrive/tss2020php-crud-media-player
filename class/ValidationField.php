@@ -92,7 +92,9 @@ class ValidationField {
             
             $test = call_user_func("Validate::$method",$val);
 
-            if($test !=  false){
+            if($test !==  false){
+                // echo "Validate::$method\n";
+                // var_dump($test );
                 $this->isValid = true;
                 $this->value = $test;
             }else{

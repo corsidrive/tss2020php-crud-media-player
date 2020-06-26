@@ -3,8 +3,6 @@
 
 <?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
 
-<?php //print_r($genere) ?>  
-
     <div class="container">
 
     <a href="<?= Config::SITE_URL.'controller/genre_add_controller.php' ?>" >aggiungi genere</a>
