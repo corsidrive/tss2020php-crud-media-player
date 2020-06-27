@@ -46,7 +46,7 @@
 
             <div class="form-group col-md-6">
                 <label for="filename">File</label>
-                <input type="file" class="form-control" name="filename" id="filename">
+                <input type="file" class="form-control" name="_filename" id="filename">
                 <?php if(!$songUpload->isAllowed() && empty($song->filename)) { ?>
                     <div class="text-danger">devi caricare un file. 
                     formati permessi: <strong><?=  $songUpload->getAllowedTypes() ?> </strong>

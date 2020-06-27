@@ -46,5 +46,6 @@ View::render('artist_form_view', [
     'artista' => $artist,
     'mode' => 'Modifica artista: ' . ($artist ? $artist->name : null),
     'lead' => 'Modifica artista ',
+    'nameField' => $nameField,
     'button' => 'modifica',
 ]);
