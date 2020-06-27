@@ -1,0 +1,6 @@
+{
+    "DB_NAME" :     "media_library",
+    "DB_USER" :     "root",
+    "DB_PASSWORD" : "fiacca",
+    "DB_HOST" :     "localhost"
+}

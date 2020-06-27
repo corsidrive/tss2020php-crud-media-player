@@ -1,0 +1,1 @@
+mysqldump -u root -pfiacca media_library > ./media_library_full.sql
