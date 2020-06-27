@@ -3,17 +3,11 @@ include_once '../autoload.php';
 
 $nameField = new ValidationField(
     'artist_name',
-    'isName',
+    'required',
     'il nome non è valido',
     ['required' => true]
 );
 
-$idField = new ValidationField(
-    'artist_id',
-    'is_integer',
-    'id non valido',
-    ['required' => true]
-);
 
 
 
@@ -33,12 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $artist_id = $idField->getValue();
-    $artist_name = $nameField->getValue();
-
     $artist = new Artist();
-    $artist->name = $artist_name;
-    $artist->artist_id = $artist_id;
+    $artist->name = $nameField->getValue();
+    $artist->artist_id =  filter_input(INPUT_POST,'artist_id',FILTER_VALIDATE_INT);
 
     if (ValidationField::formIsValid()) {
 
@@ -53,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 View::render('artist_form_view', [
     'artista' => $artist,
-    'nameField' => $nameField,
     'mode' => 'Modifica artista: ' . ($artist ? $artist->name : null),
     'lead' => 'Modifica artista ',
     'button' => 'modifica',

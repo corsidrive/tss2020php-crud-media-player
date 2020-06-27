@@ -11,7 +11,6 @@ $nameField = new ValidationField(
 
 if($_SERVER['REQUEST_METHOD'] == 'GET'){
 
-    // artista sconosciuto
     $artist = new Artist();
     $artist->name = ''; 
    
@@ -30,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $artistModel = new ArtistModel(Db::getInstance());
         $artistModel->create($artist);
+        
         header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
     }
 
