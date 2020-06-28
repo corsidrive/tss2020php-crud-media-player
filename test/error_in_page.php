@@ -13,7 +13,7 @@ array_walk($controllers,function($controller_url){
     findTextInUrl($url,'Fatal error',false); 
     findTextInUrl($url,'notice',false);
 });
-
+ 
 // http://localhost/tss2020php-crud-media-player/controller/song_add_controller.php
 
 // HTTPRequest(Config::SITE_URL.'controller/song_add_controller.php',['title']);

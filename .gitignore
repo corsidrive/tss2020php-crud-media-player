@@ -1,12 +1,3 @@
 .vscode/settings.json
 uploads/
-test/static/test_artist_delete_controller.php.html
-test/static/test_genre_delete_controller.php.html
-test/static/test_song_add_controller.php.html
-test/static/test_song_delete_controller.php.html
-test/static/test_song_edit_controller.php.html
-test/static/test_artist_delete_controller.php.msg.txt
-test/static/test_genre_delete_controller.php.msg.txt
-test/static/test_song_add_controller.php.msg.txt
-test/static/test_song_delete_controller.php.msg.txt
-test/static/test_song_edit_controller.php.msg.txt
+test/static
