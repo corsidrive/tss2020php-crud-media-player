@@ -1,12 +1,18 @@
 <?php
-echo "\n_FILES:\n\n";
-print_r($_FILES);
 
-echo "\n_POST:\n\n";
+// print_r(scandir('.'));
+require_once "../autoload.php";
+
 print_r($_POST);
 
-echo "\n_GET:\n\n";
-print_r($_GET);
+$idGenereField = new ValidationField(
+    'genre_id',
+    'is_int_or_null',
+    'campo intero o nullo',
+    ['required' => false]
+);
+
+var_dump($idGenereField->getValue()==NULL);
 
 
 ?>

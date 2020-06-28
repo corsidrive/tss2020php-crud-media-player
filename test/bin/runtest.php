@@ -1,7 +1,7 @@
 <?php
-include_once './autoload.php';
-include_once __DIR__.'/testTools.php';
-
+require_once './autoload.php';
+// include_once __DIR__.'/testTools.php';
+require_once './test/TestTools.php';
 exec('cls');
 $testDirectory = "./test/*.php";
 $tests = glob($testDirectory);

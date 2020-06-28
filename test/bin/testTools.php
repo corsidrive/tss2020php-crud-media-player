@@ -152,15 +152,16 @@ function HTTPRequest($url, $data, $method = 'POST', $contentType = 'application/
 function CHTTPRequest($url, $data, $method = 'POST', $contentType = 'application/x-www-form-urlencoded')
 {
 
-    $curlExec = "curl  ";
+    $curlExec = "curl -i ";
     $curlExec .= curlFormParam($data);
-    $curlExec .= " $url > " . basename($url) . ".html";
+    $curlExec .= " $url";
+    // $curlExec .= " > " . basename($url) . ".html";
 
     echo $curlExec . "\n";
 
     $page = system($curlExec);
 
-    file_put_contents("./test/static/test_" . basename($url) . '.html', $page);
+    //file_put_contents("./test/static/test_" . basename($url) . '.html', $page);
     //file_put_contents("./test/static/test_".basename($url).'.msg.txt',$msg);
 
     return $page;

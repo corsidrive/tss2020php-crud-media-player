@@ -1,24 +1,16 @@
 <?php
-
-echo "testools\n";
-// echo Config::SITE_URL;
-$res = HTTPRequest(Config::SITE_URL.'test/post.test.php',
-       [
-           'nome' => 'paolo' 
-       ]
-);
-
-// print_r($res);
+echo "\n\n\n------------\n";
+echo basename(__FILE__)."\n\n";
 
 $res = CHTTPRequest(Config::SITE_URL.'test/post.test.php',
      [
-         "nome" => 'paolo',
-         "fileupload" => '@test/01.mp3'
+         "id_genre" => ''
      ]   
-);
+); 
 
+echo "res risposta per post test
+      \n-------------------------------\n";
 print_r($res);
-
 
 /*
 curl -i  

@@ -46,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $song = new Song();
     
     $song->title = $titleField->getValue();
-    $song->genre_id = filter_input(INPUT_POST, "genre_id",FILTER_VALIDATE_INT);
-    $song->artist_id = filter_input(INPUT_POST, "artist_id",FILTER_VALIDATE_INT);
+    $song->genre_id = $idGenereField->getValue();
+    $song->artist_id = $idArtistaField->getValue();
     
     if( ValidationField::formIsValid()){
 
@@ -57,9 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             $songModel = new SongModel(Db::getInstance());
             $songModel->create($song);
-
-
-            // header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
+            
+            header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
 
         }else{
 

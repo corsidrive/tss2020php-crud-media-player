@@ -12,8 +12,12 @@ class SongModel
 
     public function create(Song $song)
     {
-        print_r($song);
-
+        // echo"<pre>";
+        // var_dump($_POST);
+        // echo __FUNCTION__;
+        // var_dump($song);
+        // echo"</pre>";
+        
         try {
 
             $sql = "INSERT into song (filename, title, genre_id, artist_id) 
