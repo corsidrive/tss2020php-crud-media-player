@@ -43,11 +43,26 @@ function getFiles($path){
     return $onlyFiles;
 }
 
-function findTextInUrl($url,$actual,$expected){
+function findTextInUrl($url,$_actual,$expected){
     $page = file_get_contents($url);
-    $res = stripos($page,$actual);
-    if($expected !== $res) {
-        extract(debug_backtrace()[0]);
+    $toFind = [];
+
+    if(is_array($_actual)){
+        $toFind = $_actual;
+    }else{
+        array_push($toFind,$_actual);
+    } 
+    extract(debug_backtrace()[0]);
+    //var_dump($toFind);
+    //die();
+    array_walk($toFind,function($actual)use($line,$file,$url,$page,$expected){
+        $res = stripos($page,$actual);
+
+        $stringFound = $res === false ? false : true; 
+        // var_dump($res);   
+     
+    if($expected !== $stringFound) {
+       
         
         $found = !$expected ? "found: " : "not found: "; 
         $msg =  $found . $actual."\n";
@@ -55,28 +70,35 @@ function findTextInUrl($url,$actual,$expected){
         $msg .= basename($file) . " (line: ".$line.")\n\n";
 
         echo $msg;
+
+//         $pos = stripos($page,$actual);
+// echo "---------------\n\n".substr($page,$pos - 10,100)."\n\n----------------\n";
+
         file_put_contents("./test/static/test_".basename($url).'.html',$page);
         file_put_contents("./test/static/test_".basename($url).'.msg.txt',$msg);
  
     }
+    });
+
+
 }
 
 function delete_directory($dirname) {
-    if (is_dir($dirname))
-      $dir_handle = opendir($dirname);
-if (!$dir_handle)
-     return false;
-while($file = readdir($dir_handle)) {
-      if ($file != "." && $file != "..") {
-           if (!is_dir($dirname."/".$file))
-                unlink($dirname."/".$file);
-           else
-                delete_directory($dirname.'/'.$file);
-      }
-}
-closedir($dir_handle);
-rmdir($dirname);
-return true;
+//     if (is_dir($dirname))
+//       $dir_handle = opendir($dirname);
+// if (!$dir_handle)
+//      return false;
+// while($file = readdir($dir_handle)) {
+//       if ($file != "." && $file != "..") {
+//            if (!is_dir($dirname."/".$file))
+//                 unlink($dirname."/".$file);
+//            else
+//                 delete_directory($dirname.'/'.$file);
+//       }
+// }
+// closedir($dir_handle);
+// rmdir($dirname);
+// return true;
 }
  
 function HTTPRequest($url,$data,$method='POST',$contentType='application/x-www-form-urlencoded'){
