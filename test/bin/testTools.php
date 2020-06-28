@@ -43,7 +43,8 @@ function getFiles($path){
     return $onlyFiles;
 }
 
-function findTextInUrl($url,$_actual,$expected){
+function findTextInUrl($url,$_actual,$expected,$takeScreenshoot=false){
+
     $page = file_get_contents($url);
     $toFind = [];
 
@@ -53,35 +54,36 @@ function findTextInUrl($url,$_actual,$expected){
         array_push($toFind,$_actual);
     } 
     extract(debug_backtrace()[0]);
-    //var_dump($toFind);
-    //die();
-    array_walk($toFind,function($actual)use($line,$file,$url,$page,$expected){
-        $res = stripos($page,$actual);
-
-        $stringFound = $res === false ? false : true; 
-        // var_dump($res);   
-     
-    if($expected !== $stringFound) {
-       
+   
+    // con una singola chiamata controlla un array di stringhe
+    array_walk($toFind,function($actual)use($line,$file,$url,$page,$expected,$takeScreenshoot){
         
-        $found = !$expected ? "found: " : "not found: "; 
-        $msg =  $found . $actual."\n";
-        $msg .= "page: ".basename($url)."\n";
-        $msg .= basename($file) . " (line: ".$line.")\n\n";
+        $res = stripos($page,$actual);
+        $stringFound = $res === false ? false : true; 
+       
+        if($expected !== $stringFound) {
+        
+            
+            $found = !$expected ? "found: " : "not found: "; 
+            $msg =  $found . $actual."\n";
+            $msg .= "page: ".basename($url)."\n";
+            $msg .= basename($file) . " (line: ".$line.")\n\n";
 
-        echo $msg;
+            echo $msg;
 
-//         $pos = stripos($page,$actual);
-// echo "---------------\n\n".substr($page,$pos - 10,100)."\n\n----------------\n";
-
-        file_put_contents("./test/static/test_".basename($url).'.html',$page);
-        file_put_contents("./test/static/test_".basename($url).'.msg.txt',$msg);
+            if($takeScreenshoot){
+                file_put_contents("./test/static/test_".basename($url).'.html',$page);
+                file_put_contents("./test/static/test_".basename($url).'.msg.txt',$msg);
+            }
  
     }
     });
 
 
 }
+
+
+
 
 function delete_directory($dirname) {
 //     if (is_dir($dirname))
@@ -119,3 +121,32 @@ function HTTPRequest($url,$data,$method='POST',$contentType='application/x-www-f
 
     return($result);
 }
+
+
+function CHTTPRequest($url,$data,$method='POST',$contentType='application/x-www-form-urlencoded'){
+   
+         $curlExec = "curl  ";
+         $curlExec .= curlFormParam($data);
+         $curlExec .= " $url > ".basename($url).".html"; 
+        
+         echo $curlExec."\n";
+         
+         $page = system($curlExec);
+
+         file_put_contents("./test/static/test_".basename($url).'.html',$page);
+         //file_put_contents("./test/static/test_".basename($url).'.msg.txt',$msg);
+  
+         return $page;
+}
+
+function curlFormParam($data){
+         
+         //echo "\n".__FUNCTION__."\n";
+
+         $curlOption = "";
+         foreach($data as $key => $value){
+            $curlOption .= " -F $key=$value ";
+         }
+
+         return $curlOption;
+} 

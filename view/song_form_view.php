@@ -19,7 +19,7 @@
 
             <select id="artist" name="artist_id" class="form-control">
                 
-                <option value="NULL" <?= $song->artist_id == '' ? 'selected' : ''; ?>> sconosciuto </option>
+                <option value="" <?= $song->artist_id == '' ? 'selected' : ''; ?>> sconosciuto </option>
                 <?php foreach ($elencoArtisti as $artista) { ?>
 
                     <option value="<?= $artista->artist_id ?>" <?= $song->artist_id == $artista->artist_id ? 'selected' : '' ?>>
@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="genre">Genere</label>
                 <select id="genre" class="form-control" name="genre_id">
-                    <option value="NULL" <?= $song->genre_id == '' ? 'selected' : ''; ?>> sconosciuto </option>
+                    <option value="" <?= $song->genre_id == '' ? 'selected' : ''; ?>> sconosciuto </option>
                     <?php foreach ($elencoGeneri as $genere) { ?>
 
                         <option value="<?= $genere->genre_id ?>" <?= $song->genre_id == $genere->genre_id ? 'selected' : '' ?>>
@@ -46,7 +46,7 @@
 
             <div class="form-group col-md-6">
                 <label for="filename">File</label>
-                <input type="file" class="form-control" name="_filename" id="filename">
+                <input type="file" class="form-control" name="filename" id="filename">
                 <?php if(!$songUpload->isAllowed() && empty($song->filename)) { ?>
                     <div class="text-danger">devi caricare un file. 
                     formati permessi: <strong><?=  $songUpload->getAllowedTypes() ?> </strong>
