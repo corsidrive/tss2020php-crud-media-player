@@ -8,19 +8,19 @@ $titleField = new ValidationField(
     ['required' => true]
 );
 
-// $idGenereField = new ValidationField(
-//     'genre_id',
-//     'is_int_or_null',
-//     'campo intero o nullo',
-//     ['required' => false]
-// );
+$idGenereField = new ValidationField(
+    'genre_id',
+    'is_int_or_null',
+    'campo intero o nullo',
+    ['required' => false]
+);
 
-// $idArtistaField = new ValidationField(
-//     'artist_id',
-//     'is_int_or_null',
-//     'campo intero o nullo',
-//     ['required' => false]
-// );
+$idArtistaField = new ValidationField(
+    'artist_id',
+    'is_int_or_null',
+    'campo intero o nullo',
+    ['required' => false]
+);
 
 
 $artistModel = new ArtistModel(Db::getInstance());
@@ -58,7 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $songModel = new SongModel(Db::getInstance());
             $songModel->create($song);
 
-            header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
+
+            // header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
 
         }else{
 

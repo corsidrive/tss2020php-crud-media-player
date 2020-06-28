@@ -1,5 +1,5 @@
 <?php
-require("./test/bin/testTools.php");
+
 
 function null_or_integer($value)
 {

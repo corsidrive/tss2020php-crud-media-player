@@ -1,0 +1,96 @@
+
+<!-- artist_form_view.php -->
+
+<!-- head.php -->
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+<title>Aggiungi nuovo artista</title>
+<style>
+    body {
+    padding-bottom: 6rem;
+}
+</style>
+</head>
+<body>
+
+
+
+<!-- head  END -->
+
+<!-- nav.php -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary m-0">
+        <a class="navbar-brand" href="#">Media library</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/tss2020php-crud-media-player/index.php">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/tss2020php-crud-media-player/controller/artist_index_controller.php">Artist</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/tss2020php-crud-media-player/controller/song_index_controller.php">Song</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost/tss2020php-crud-media-player/controller/genre_index_controller.php">Genre</a>
+            </li>
+          </ul>
+        </div>
+</nav>
+<!-- nav  END -->
+
+
+<!-- jumbotron.php -->
+<div class="jumbotron p-3">
+        <div class="container">
+            <h1 class="display-4 m-0">Media Library</h1>
+            <p class="lead">Aggiungi nuovo artista</p>
+        </div>
+</div>
+<!-- jumbotron  END -->
+
+<main class="container">
+            <div class="card">
+            <div class="card-header">
+                <h1 class="h5 text-normal m-1">Inserisci artista </h1>
+            </div>
+            <div class="card-body">
+                <form method="post" action="/tss2020php-crud-media-player/controller/artist_add_controller.php">
+                    <div class="form-group">
+                        <label for="name">Nome dell'artista</label>
+                        <input id="name" value="artista nome messo per cas altro" class="form-control" type="text" name="artist_name">
+
+                                            </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">aggiungi</button>
+                    </div>
+                    <input type="hidden" name="artist_id" value="">
+                </form>
+            </div>
+        </div>
+    
+</main>
+
+
+
+<!-- footer.php -->
+<footer class="footer fixed-bottom bg-dark text-light">
+        <div class="container text-center py-3">
+          <span class="center">corso tss 2020 Sarasso Roberto</span> 
+        </div>
+      </footer>
+</body>
+</html>
+<!-- footer  END -->
+
+<!-- artist_form_view  END -->

@@ -12,6 +12,7 @@ class SongModel
 
     public function create(Song $song)
     {
+        print_r($song);
 
         try {
 

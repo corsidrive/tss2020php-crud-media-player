@@ -1,5 +1,5 @@
 <?php
-include '../autoload.php';
+include_once '../autoload.php';
 
 echo "la connessione deve essere sempre la stessa\n";
 var_dump(Db::getInstance() === Db::getInstance());
