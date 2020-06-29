@@ -1,7 +1,7 @@
 <?php
 
 function getPDO(){
-    return new PDO('mysql:dbname=media_library_test;host=localhost','root','fiacca');
+    return new PDO('mysql:dbname=media_library;host=localhost','root','fiacca');
 }
 
 function truncateTable($table,$pdo){

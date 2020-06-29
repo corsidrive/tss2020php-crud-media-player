@@ -1,15 +1,18 @@
 <?php
 require_once './autoload.php';
-// include_once __DIR__.'/testTools.php';
-require_once './test/TestTools.php';
+require_once './test/bin/TestTools.php';
+require_once './test/bin/dbTestTools.php';
 exec('cls');
-$testDirectory = "./test/*.php";
+$testDirectory = "./test/*.test.php";
+// glob permette di ottenre tutti i file nella directory test con estensione php
 $tests = glob($testDirectory);
-
+// print_r($tests);
+delete_static();
 try {
     foreach ($tests as $test) {
         include $test;
     }
+    
 } catch (\Throwable $th) {
     
     echo red("-- ERRORE --")."\n";

@@ -32,7 +32,7 @@ function red($message)
 function speech($text)
 {
     $sql = 'mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' . $text . '"")(window.close)")';
-    exec($sql);
+    //exec($sql);
 }
 
 function getFiles($path)
@@ -108,23 +108,10 @@ function findTextInUrl($url, $_actual, $expected, $takeScreenshoot = false)
 
 
 
-function delete_directory($dirname)
+function delete_static()
 {
-    //     if (is_dir($dirname))
-    //       $dir_handle = opendir($dirname);
-    // if (!$dir_handle)
-    //      return false;
-    // while($file = readdir($dir_handle)) {
-    //       if ($file != "." && $file != "..") {
-    //            if (!is_dir($dirname."/".$file))
-    //                 unlink($dirname."/".$file);
-    //            else
-    //                 delete_directory($dirname.'/'.$file);
-    //       }
-    // }
-    // closedir($dir_handle);
-    // rmdir($dirname);
-    // return true;
+    $f = glob("./test/static/*.*");
+    array_walk($f,function($item){unlink($item);});
 }
 
 function HTTPRequest($url, $data, $method = 'POST', $contentType = 'application/x-www-form-urlencoded')
@@ -148,23 +135,22 @@ function HTTPRequest($url, $data, $method = 'POST', $contentType = 'application/
     return ($result);
 }
 
-
+ 
 function CHTTPRequest($url, $data, $method = 'POST', $contentType = 'application/x-www-form-urlencoded')
 {
+    @mkdir("./test/static/");
+    $time = str_replace([" ","."],"_",microtime());
+    $file = "./test/static/test_" . basename($url) .'_'.$time.'.html';
 
-    $curlExec = "curl -i ";
-    $curlExec .= curlFormParam($data);
+    $curlExec = "curl -i -s -o $file ";    
+    $curlExec .= curlFormParam($data); 
     $curlExec .= " $url";
-    // $curlExec .= " > " . basename($url) . ".html";
 
-    echo $curlExec . "\n";
-
-    $page = system($curlExec);
+    exec($curlExec,$page); 
 
     //file_put_contents("./test/static/test_" . basename($url) . '.html', $page);
-    //file_put_contents("./test/static/test_".basename($url).'.msg.txt',$msg);
 
-    return $page;
+    return $page; 
 }
 
 function curlFormParam($data)
@@ -173,7 +159,7 @@ function curlFormParam($data)
     $curlOption = "";
     foreach ($data as $key => $value) {
         $value = addQuote($value);
-        $curlOption .= " -F $key=$value ";
+        $curlOption .= " -F $key=$value "; 
     }
 
     return $curlOption;
