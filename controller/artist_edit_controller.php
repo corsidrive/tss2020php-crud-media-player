@@ -1,43 +1,51 @@
 <?php
 include_once '../autoload.php';
 
-
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
-
-    // artista conosciuto
-    $artist_id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
-    $artistModel = new ArtistModel(Db::getInstance());
-    // 
-    $artist = $artistModel->readOne($artist_id);
+$nameField = new ValidationField(
+    'artist_name',
+    'required',
+    'il nome non è valido',
+    ['required' => true]
+);
 
 
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $artist_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+    
+    if($artist_id != false){
+
+        $artistModel = new ArtistModel(Db::getInstance());
+        $artist = $artistModel->readOne($artist_id);
+        
+    }else{
+        $artist = null;
+    }
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $artist_name = filter_input(INPUT_POST, 'artist_name');
-    $artist_id = filter_input(INPUT_POST,'artist_id',FILTER_VALIDATE_INT);
-
     $artist = new Artist();
-    $artist->name = $artist_name;
-    $artist->artist_id = $artist_id;
-    
-    $artistModel = new ArtistModel(Db::getInstance());
-    
-    $artistModel->update($artist);
-    
-    header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
+    $artist->name = $nameField->getValue();
+    $artist->artist_id =  filter_input(INPUT_POST,'artist_id',FILTER_VALIDATE_INT);
+
+    if (ValidationField::formIsValid()) {
+
+        $artistModel = new ArtistModel(Db::getInstance());
+        $artistModel->update($artist);
+
+        header('Location:' . Config::SITE_URL . 'controller/artist_index_controller.php');
+
+    }
+
 }
 
-View::render('artist_form_view',[
+View::render('artist_form_view', [
     'artista' => $artist,
+    'mode' => 'Modifica artista: ' . ($artist ? $artist->name : null),
+    'lead' => 'Modifica artista ',
     'nameField' => $nameField,
-    'mode' => 'Modifica Artista '.$artist->name,
-    'lead'=>'Modifica artista',
-    'button'=>'modifica'
+    'button' => 'modifica',
 ]);
-
-
-
-
-

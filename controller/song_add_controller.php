@@ -1,39 +1,81 @@
-<?php 
+<?php
 include "../autoload.php";
 
-if($_SERVER['REQUEST_METHOD']=='GET'){
+$titleField = new ValidationField(
+    'title',
+    'required',
+    'il titolo è obbligatorio',
+    ['required' => true]
+);
 
-    $artistModel = new ArtistModel(Db::getInstance()); 
-    $elencoArtisti = $artistModel->readAll();
+$idGenereField = new ValidationField(
+    'genre_id',
+    'is_int_or_null',
+    'campo intero o nullo',
+    ['required' => false]
+);
+
+$idArtistaField = new ValidationField(
+    'artist_id',
+    'is_int_or_null',
+    'campo intero o nullo',
+    ['required' => false]
+);
 
 
-    $genreModel = new GenreModel(Db::getInstance()); 
-    $elencoGeneri = $genreModel->readAll();
+$artistModel = new ArtistModel(Db::getInstance());
+$elencoArtisti = $artistModel->readAll();
+
+$genreModel = new GenreModel(Db::getInstance());
+$elencoGeneri = $genreModel->readAll();
+
+$songUpload = new UploadFile('filename', Config::UPLOAD_FOLDER,['audio/mpeg']);
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+
+    $song = new Song();
+    $song->title = '';
+    $song->genre_id = null;
+    $song->artist_id = null;
+
+    //print_r($_FILES);
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
+    $song = new Song();
+    
+    $song->title = $titleField->getValue();
+    $song->genre_id = $idGenereField->getValue();
+    $song->artist_id = $idArtistaField->getValue();
+    
+    if( ValidationField::formIsValid()){
+
+        $song->filename = $songUpload->doUpload();
+
+        if($song->filename != NULL) {
+            
+            $songModel = new SongModel(Db::getInstance());
+            $songModel->create($song);
+            
+            header('Location:' . Config::SITE_URL . 'controller/song_index_controller.php');
+
+        }else{
+
+            // qui upload è fallito per qualche ragione
+        }
+    }
 
 }
 
 
 
-if($_SERVER['REQUEST_METHOD']=='POST'){
-   
-   
-
-   $upload = new UploadFile('filename',Config::UPLOAD_FOLDER,['audio/mpeg']);
-
-   if($upload->isAllowed()){
-       
-    // $song->filename =  $upload->doUpload(); 
-       $upload->doUpload(); 
-   }
-
-   // $songModel->create($song);
-
-}
-
-
-
-
-
-View::render('song_form_view',[
+View::render('song_form_view', [
     'elencoArtisti' => $elencoArtisti,
+    'elencoGeneri' => $elencoGeneri,
+    'song' => $song,
+    'songUpload' => $songUpload,
+    'titleField' => $titleField,
+    'lead' => 'Aggiungi nuovo artista',
+    'button' => 'aggiungi',
 ]);

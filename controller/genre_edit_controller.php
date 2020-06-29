@@ -1,17 +1,21 @@
 <?php
 include_once '../autoload.php';
 
-$nameField = new ValidationField('genre_name', 'required', 'il nome è obbligatorio', ['required'=>true]);
-$codeField = new ValidationField('genre_code', 'is_number', 'il codice è obbligatorio e deve essere un numero', ['required'=>true]);
+$nameField = new ValidationField('genre_name', 'required', 'il nome è obbligatorio', ['required' => true]);
+$codeField = new ValidationField('genre_code', 'is_number', 'il codice è obbligatorio e deve essere un numero', ['required' => true]);
 
 
-if($_SERVER['REQUEST_METHOD'] == 'GET'){
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-    $genre_id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
+    $genre_id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-    $genreModel = new GenreModel(Db::getInstance());
-    $genre = $genreModel->readOne($genre_id);
+    if ($genre_id != false) {
 
+        $genreModel = new GenreModel(Db::getInstance());
+        $genre = $genreModel->readOne($genre_id);
+    } else {
+        $genre = null;
+    }
 }
 
 
@@ -19,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $genre_name = $nameField->getValue();
     $genre_code = $codeField->getValue();
-    
+
     $genre_id = filter_input(INPUT_POST, 'genre_id', FILTER_VALIDATE_INT);
 
     $genre = new Genre();
@@ -27,34 +31,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $genre->code = $genre_code;
 
     $genre->genre_id = $genre_id;
-    
-    if(ValidationField::formIsValid()) {
+
+    if (ValidationField::formIsValid()) {
 
         $genreModel = new GenreModel(Db::getInstance());
-    
         $genreModel->update($genre);
 
         header('Location:' . Config::SITE_URL . 'controller/genre_index_controller.php');
-
     }
-
 }
 
 
-View::render('genre_form_view',[
+View::render('genre_form_view', [
     'genere' => $genre,
-
-    'mode' => 'Stai modificando: ' . $genre->name,
-    
+    'mode' => 'Stai modificando: ' . ($genre ? $genre->name : null),
     'lead' => 'Modifica Genere',
     'button' => 'modifica',
 
-    'nameField'=> $nameField,
-    'codeField'=> $codeField
+    'nameField' => $nameField,
+    'codeField' => $codeField
 
 ]);
-
-
-
-
-

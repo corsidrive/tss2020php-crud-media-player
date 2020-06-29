@@ -1,7 +1,6 @@
 <?php
 include_once "../autoload.php";
 
-//print_r($_GET['id']);
 $artist_id = filter_input(INPUT_GET,'id',FILTER_VALIDATE_INT);
 
 

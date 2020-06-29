@@ -33,7 +33,7 @@ class Validate
      */
 
     public static function is_maggiorenne($age)
-    {   
+    {
         return filter_var($age, FILTER_VALIDATE_INT, array(
             "options" => array(
                 "min_range" => 18,
@@ -47,23 +47,23 @@ class Validate
         $value = strip_tags($value); // "   ciao    "
         $value = trim($value);
 
-        if(preg_match("/^([a-zA-Z \'\,\.\-]+)$/",$value)){
-           return $value;
-        }else{
-           return false;
+        if (preg_match("/^([a-zA-Z \'\,\.\-]+)$/", $value)) {
+            return $value;
+        } else {
+            return false;
         }
     }
-    
+
     public static function radioRequired($value)
     {
-     
+
         return Validate::required($value);
-        
     }
 
 
-public static function is_number($num)
-    {   
+
+    public static function is_number($num)
+    {
         return filter_var($num, FILTER_VALIDATE_INT, array(
             "options" => array(
                 "min_range" => 0,
@@ -72,4 +72,8 @@ public static function is_number($num)
         ));
     }
 
-}    
+    public static function is_int_or_null($value)
+    {
+        return empty($value) ? null : filter_var($value, FILTER_VALIDATE_INT);
+    }
+}

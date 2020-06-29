@@ -19,10 +19,8 @@ class UploadFile {
 
     }
 
-    public function doUpload()
-    {
-
-
+    public function doUpload():?string
+    { 
         $original_file_name = $_FILES[$this->name]['name'];
         $error = $_FILES[$this->name]['error'];
         $tmp_path = $_FILES[$this->name]['tmp_name'];
@@ -34,22 +32,30 @@ class UploadFile {
             return $original_file_name;
 
         }else{
-            // TODO: eccezione per errore di caricamento
+            
+            return null;
         }
-
     }
 
     public function isAllowed()
     {
-      
+       if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($_FILES) == 0) { return true; }
+
        if(count($this->allowedTypes) != 0) {
-    
            $currentType = $_FILES[$this->name]['type'];
            return in_array($currentType,$this->allowedTypes);
-       } else{
+
+       } else {
+
             return true;
+
        }
 
+    }
+
+    public function getAllowedTypes()
+    {
+        return implode(',',$this->allowedTypes);
     }
 
 }

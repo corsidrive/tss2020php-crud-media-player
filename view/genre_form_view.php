@@ -1,47 +1,56 @@
-<?php View::render('head'); ?>
+<?php View::render('head', ['title' => $lead]); ?>
 <?php View::render('nav');  ?>
 
-<?php View::render('jumbotron', ['lead' => $lead, 'site_name' => "Supercal"]); ?>
+<?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
 
 
 <main class="container">
 
-<div class="card">
-    <div class="card-header">
-        <h1 class="h5 text-normal m-1"><?= $mode ?> </h1>
-    </div>
-    <div class="card-body">
-       
-       <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
-           <div class="form-group">      
+    <div class="card">
+        <div class="card-header">
+            <h1 class="h5 text-normal m-1"><?= $mode ?> </h1>
+        </div>
+        <?php if ($genere) { ?>
+            <div class="card-body">
 
-               <input type="hidden" name="genre_id" value="<?= $genere->genre_id ?>">
+                <form method="post" action="<?= $_SERVER['PHP_SELF'] ?>">
+                    <div class="form-group">
 
-               <label for="name">Nome del genere</label>
-               <input id="name" value="<?= $genere->name ?>" class="form-control" type="text" name="genre_name">
-               
-               <?php if($nameField->getIsValid()===false) { ?>
+                        <input type="hidden" name="genre_id" value="<?= $genere->genre_id ?>">
 
-                    <div class="text-danger"><?= $nameField->getErrorMessage() ?></div>
+                        <label for="name">Nome del genere</label>
+                        <input id="name" value="<?= $genere->name ?>" class="form-control" type="text" name="genre_name">
 
-                <?php } ?>
-               
-               <label for="name">Codice del genere</label>
-               <input id="name" value="<?= $genere->code ?>" class="form-control" type="text" name="genre_code">
-           
-               <?php if($codeField->getIsValid()===false) { ?>
+                        <?php if ($nameField->getIsValid() === false) { ?>
 
-                    <div class="text-danger"><?= $codeField->getErrorMessage() ?></div>
+                            <div class="text-danger"><?= $nameField->getErrorMessage() ?></div>
 
-                <?php } ?> 
+                        <?php } ?>
 
+                        <label for="name">Codice del genere</label>
+                        <input id="name" value="<?= $genere->code ?>" class="form-control" type="text" name="genre_code">
+
+                        <?php if ($codeField->getIsValid() === false) { ?>
+
+                            <div class="text-danger"><?= $codeField->getErrorMessage() ?></div>
+
+                        <?php } ?>
+
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary"><?= $button ?></button>
+                    </div>
+                </form>
             </div>
-           <div class="form-group">
-              <button type="submit" class="btn btn-primary"><?= $button ?></button>
-           </div>
-       </form>
+        <?php } else { ?> 
+            
+            <div class="alert alert-secondary"> il genere cercato non esiste</div>
+            
+        <?php } ?>
+
+
+
     </div>
-</div>
 
 </main>
 

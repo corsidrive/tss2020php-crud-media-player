@@ -1,10 +1,7 @@
-<?php View::render('head'); ?>
-<?php View::render('nav')  ?>
+<?php View::render('head',['title'=>$lead]); ?>
+<?php View::render('nav');  ?>
 
-<?php View::render('jumbotron', 
-                                [ 'lead' => "Elenco dei generi", 'site_name' => "Supercal" ]  ); ?>
-
-<?php //print_r($genere) ?>  
+<?php View::render('jumbotron', ['lead' => $lead, 'site_name' => Config::SITE_NAME]); ?>
 
     <div class="container">
 
@@ -12,7 +9,7 @@
 
     <?php  if($generi){ ?>
 
-        <table class="table table-light">
+        <table class="table table-light mt-3">
             <thead class="thead-light">
                 <tr>
                     <th width="1%">#</th>
@@ -22,11 +19,6 @@
             </thead>
             <tbody>
 
-            
-
-          
-
-           
                 <?php foreach ($generi as $genere) { ?>
                                    
                     <tr>
@@ -45,7 +37,7 @@
         </table>
 
             <?php } else { ?>
-                <div class="alert alert-info m-3">non ci sono genri </div>;
+                <div class="alert alert-secondary mt-3">non ci sono generi </div>
             <?php } ?>     
     </div>    
 
