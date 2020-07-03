@@ -10,6 +10,7 @@ class Account {
     public function __construct() {
         $this->model = new AccountModel(Db::getInstance());
     }
+    
     /**
      * Get the value of id
      */ 
@@ -80,4 +81,17 @@ class Account {
             $this->model->update($this);
         }
     }
+
+
+    public function setPasswordHash($password)
+    {
+        $this->password = password_hash($password,PASSWORD_BCRYPT);
+    }
+
+    public function getPasswordHash()
+    {
+        return $this->password;
+    }
+
+
 }

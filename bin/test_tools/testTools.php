@@ -36,6 +36,7 @@ function red($message)
 function speech($text)
 {
     $sql = 'mshta vbscript:Execute("CreateObject(""SAPI.SpVoice"").Speak(""' . $text . '"")(window.close)")';
+    
     //exec($sql);
 }
 

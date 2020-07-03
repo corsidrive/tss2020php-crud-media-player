@@ -14,8 +14,8 @@ class AccountModel {
                                     
         $stm->bindValue(':username',$account->getUsername());
         
-        //TODO
-        //$stm->bindValue(':password',$account->getPasswordHash());
+        $stm->bindValue(':password',$account->getPasswordHash());
+
         $stm->bindValue(':email',$account->getEmail());
 
         $stm->execute();
@@ -73,10 +73,8 @@ class AccountModel {
         $res = $stm->fetchAll(PDO::FETCH_CLASS,'Account');
         return count($res) === 1 ? $res[0] : null; 
     }
-    
-   
 
-   
+    
 
     
 }
