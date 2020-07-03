@@ -1,5 +1,9 @@
 <?php
 
+function testFile($file){
+    echo red("# ". basename($file)."\n");
+}
+
 function assertEquals($message, $actual, $expected)
 {
 
@@ -148,6 +152,7 @@ function CHTTPRequest($url, $data, $method = 'POST', $contentType = 'application
 
     exec($curlExec,$page); 
 
+    
     //file_put_contents("./test/static/test_" . basename($url) . '.html', $page);
 
     return $page; 
