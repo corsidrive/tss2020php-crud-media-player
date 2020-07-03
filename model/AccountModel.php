@@ -13,7 +13,9 @@ class AccountModel {
                                     VALUES ( :username, :password, :email);");
                                     
         $stm->bindValue(':username',$account->getUsername());
-        $stm->bindValue(':password',$account->getPasswordHash());
+        
+        //TODO
+        //$stm->bindValue(':password',$account->getPasswordHash());
         $stm->bindValue(':email',$account->getEmail());
 
         $stm->execute();
