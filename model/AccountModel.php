@@ -50,7 +50,8 @@ class AccountModel {
                                             WHERE id=:id;');
         
         $stm->bindValue(':username',$account->getUsername(),PDO::PARAM_STR);
-        $stm->bindValue(':password',$account->getPasswordHash(),PDO::PARAM_STR);
+        //TODO: passord hash
+        //$stm->bindValue(':password',$account->getPasswordHash(),PDO::PARAM_STR);
         $stm->bindValue(':email',$account->getEmail(),PDO::PARAM_STR);
         $stm->bindValue(':id',$account->getId(),PDO::PARAM_INT);
 
